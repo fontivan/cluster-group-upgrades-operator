@@ -32,8 +32,6 @@ spec:
       value: build_args_konflux.conf
     - name: hermetic
       value: "true"
-    - name: prefetch-input
-      value: ""
     - name: build-source-image
       value: "true"
   pipelineSpec:
