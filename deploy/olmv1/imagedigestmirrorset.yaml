@@ -1,0 +1,23 @@
+# Mirror Red Hat catalog images to Konflux-built images for development and CI.
+# Adjust mirrors for your environment; see docs/olmv1/README.md.
+apiVersion: config.openshift.io/v1
+kind: ImageDigestMirrorSet
+metadata:
+  name: topology-aware-lifecycle-manager-idms
+spec:
+  imageDigestMirrors:
+  - source: registry.redhat.io/openshift4/topology-aware-lifecycle-manager-rhel9-operator
+    mirrors:
+    - quay.io/redhat-user-workloads/telco-5g-tenant/topology-aware-lifecycle-manager-5-0
+  - source: registry.redhat.io/openshift4/topology-aware-lifecycle-manager-operator-bundle
+    mirrors:
+    - quay.io/redhat-user-workloads/telco-5g-tenant/topology-aware-lifecycle-manager-bundle-5-0
+  - source: registry.redhat.io/openshift4/topology-aware-lifecycle-manager-precache-rhel9
+    mirrors:
+    - quay.io/redhat-user-workloads/telco-5g-tenant/topology-aware-lifecycle-manager-precache-5-0
+  - source: registry.redhat.io/openshift4/topology-aware-lifecycle-manager-recovery-rhel9
+    mirrors:
+    - quay.io/redhat-user-workloads/telco-5g-tenant/topology-aware-lifecycle-manager-recovery-5-0
+  - source: registry.redhat.io/openshift4/topology-aware-lifecycle-manager-aztp-rhel9
+    mirrors:
+    - quay.io/redhat-user-workloads/telco-5g-tenant/topology-aware-lifecycle-manager-aztp-5-0

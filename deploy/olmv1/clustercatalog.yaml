@@ -1,0 +1,10 @@
+apiVersion: olm.operatorframework.io/v1
+kind: ClusterCatalog
+metadata:
+  name: topology-aware-lifecycle-manager-catalog
+spec:
+  source:
+    type: Image
+    image:
+      ref: quay.io/redhat-user-workloads/telco-5g-tenant/topology-aware-lifecycle-manager-fbc-5-0:latest
+      pollIntervalMinutes: 10

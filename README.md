@@ -18,6 +18,10 @@ and it contains the following controllers:
 ## Prerequisites
 * Advanced Cluster Management (ACM) operator version 2.9 installed on the hub cluster
 
+## OLM v1 (AllNamespaces)
+
+TALM supports installation via OLM v1 using the **AllNamespaces** install mode only. Reference `ClusterExtension` / `ClusterCatalog` manifests, CI validation, and release enablement details are documented in [docs/olmv1/README.md](docs/olmv1/README.md).
+
 ## The clustergroupupgrade controller
 
 A ClusterGroupUpgrade CR defines a desired upgrade to a group clusters.

@@ -218,8 +218,23 @@ common-deps-update:	controller-gen kustomize
 	go mod tidy
 
 
+.PHONY: olmv1-bundle-validate
+olmv1-bundle-validate: bundle ## Validate bundle meets OLM v1 / AllNamespaces requirements
+	chmod +x $(PROJECT_DIR)/hack/olmv1/*.sh
+	$(PROJECT_DIR)/hack/olmv1/validate-bundle.sh
+
+.PHONY: olmv1-test
+olmv1-test: olmv1-bundle-validate ## Run OLM v1 bundle and reference CR unit tests
+	go test ./tests/olmv1/... -v
+
+.PHONY: olmv1-e2e-test
+olmv1-e2e-test: ## Install and verify TALM via OLM v1 on the current cluster (requires OLM v1)
+	chmod +x $(PROJECT_DIR)/hack/olmv1/*.sh
+	$(PROJECT_DIR)/hack/olmv1/install.sh
+	$(PROJECT_DIR)/hack/olmv1/verify-install.sh
+
 .PHONY: ci-job
-ci-job: common-deps-update generate fmt vet golangci-lint unittests verify-bindata shellcheck bashate yamllint bundle-check
+ci-job: common-deps-update generate fmt vet golangci-lint unittests verify-bindata shellcheck bashate yamllint bundle-check olmv1-test
 
 # Set the paths to the binaries in the local bin directory
 BASHATE = $(LOCALBIN)/bashate

@@ -1,0 +1,18 @@
+# Installs Topology Aware Lifecycle Manager (TALM) via OLM v1.
+# The bundle supports AllNamespaces only (no namespace-scoped watch config).
+apiVersion: olm.operatorframework.io/v1
+kind: ClusterExtension
+metadata:
+  name: topology-aware-lifecycle-manager
+spec:
+  namespace: openshift-cluster-group-upgrades
+  serviceAccount:
+    name: topology-aware-lifecycle-manager-installer
+  source:
+    sourceType: Catalog
+    catalog:
+      name: topology-aware-lifecycle-manager-catalog
+      packageName: topology-aware-lifecycle-manager
+      channels:
+      - stable
+      version: "5.0.0"
